@@ -5,7 +5,7 @@ import {
     updatestaff,
     getAllStaff,
     getStaffByID,
-} from "../controllers/staff.js";
+} from "../controllers/staff";
 //import { createStaff, getStaffBYID } from "../repositary/staffRepo.js";
 const StaffRoute = Express.Router();
 

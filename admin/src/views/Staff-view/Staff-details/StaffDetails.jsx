@@ -26,7 +26,7 @@ const StaffDetails = () => {
 
         <List
           response={users}
-          title={"Staff"}
+          title={"Staff Details"}
           dataCols={staffColumns}
         />
       </div>
