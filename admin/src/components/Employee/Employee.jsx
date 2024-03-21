@@ -5,7 +5,7 @@ import "react-circular-progressbar/dist/styles.css";
 const StaffDetails = ({ staff }) => {
   // Example data for staff details
   const exampleStaff = {
-    totalStaff: 50,
+    totalStaff: 95,
     completionRate: 70, // Percentage completion rate
     previousReleasesInfo: " Need to add something meaningful here.",
   };
