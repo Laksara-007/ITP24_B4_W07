@@ -40,6 +40,8 @@ export const getStaffByIDServices = async (id) => {
 export const updateStaffServices = async (id, body) => {
     const {staffName} = body;
     try{
+        // const user = await getStaff({ staffName: staffName });
+        // if(user) return {status: 400, message: "Staff name already in use... Please try with another name..."};
         // const staff = await updateStaff(id, body);
         // if(!staff) return {status: 400, message: "Staff details updated successfully"};
         const response = await updateStaff(id, body);
