@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 
 const roomSchema = new mongoose.Schema({
-    numbers: [{ number: Number, unavailableDates: { type: [Date] } }],
+    id: {
+        type: Number,
+        autoIncrement: true
+    },
     price: {
         type: Number,
         required: [true, 'please insert a price']
@@ -12,6 +15,13 @@ const roomSchema = new mongoose.Schema({
     type: {
         type: String,
         required: [true, 'please insert a type']
+    },
+    maxGuests: {
+        type: Number,
+        required: [true, 'please insert the number of guests']
+    },
+    unavailableDates: {
+        type: Array[Date]
     }
 });
 
