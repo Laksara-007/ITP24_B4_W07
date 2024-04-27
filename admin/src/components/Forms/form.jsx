@@ -19,6 +19,7 @@ import {
 } from "firebase/storage";
 
 import { imageListClasses } from "@mui/material";
+import { getOneBilling } from "../../api/billing/billingServices";
 
 const Form = ({ formInfo, title, func, path, id }) => {
   const navigate = useNavigate();
@@ -132,6 +133,11 @@ const Form = ({ formInfo, title, func, path, id }) => {
     }
     if (title === "EDIT EVENT") {
       getOneEvent(id).then((res) => {
+        setFormValues(res.data);
+      });
+    }
+    if (title === "EDIT BILLING") {
+      getOneBilling(id).then((res) => {
         setFormValues(res.data);
       });
     }
