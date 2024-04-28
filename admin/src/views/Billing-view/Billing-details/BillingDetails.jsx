@@ -23,17 +23,22 @@ const BillingDetails = () => {
     return (
         <div className="flex">
             <div className="flex-[7] w-full">
-                <div className="flex justify-end mt-5 mr-4">
+                <div className="flex justify-end mt-5 mr-4 gap-3">
                     <Link to="/billing/add">
-                        <button className="w-36 h-10 rounded-sm text-white bg-primary">
+                        <button className="w-36 h-10 rounded-sm text-white bg-primary mr-3">
                             Add New Expense
                         </button>
+                        <Link to="/billing/payments">
+                        <button className="w-40 h-10 rounded-sm text-white bg-gray-500">
+                            Customer Payments
+                        </button>
+                    </Link>
                     </Link>
                 </div>
 
                 <List
                     response={BillingDetails}
-                    title={"Billing"}
+                    title={"Internal Expenses"}
                     dataCols={billingColumns}
                 />
             </div>

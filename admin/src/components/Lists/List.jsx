@@ -71,7 +71,7 @@ const List = ({ response, title, dataCols }) => {
                   ? "/inventory/edit/" + params.row._id
                   : title === "Menu"
                   ? "/menu/edit/" + params.row._id
-                  : title === "Billing"
+                  : title === "Internal Expenses"
                   ? "/billing/edit/" + params.row._id
                   : title === "Event"
                   ? "/event/edit/" + params.row._id

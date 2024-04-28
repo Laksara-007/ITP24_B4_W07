@@ -1,28 +1,20 @@
 import React from "react";
-import Charts from "../../../components/Charts/Charts";
-import Featured from "../../../components/Featured/Featured";
-import Tables from "../../../components/Tables/Table";
+// import Charts from "../../../components/Charts/Charts";
+// import Featured from "../../../components/Featured/Featured";
+// import Tables from "../../../components/Tables/Table";
+// import Sidebar from "../../../components/common/Sidebar";
+// import SummarizeIcon from '@mui/icons-material/Summarize';
+// import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+// import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+// import QueryStatsIcon from "@mui/icons-material/QueryStats";
 
 
 const BillingHome = () => {
   return (
-    <div className="flex">
-      <div className="">
-        <div className="flex">
-          <div className="flex-[3]">
-            <Featured />
-          </div>
-          <div className="flex-[6]">
-            <Charts />
-          </div>
-        </div>
 
-        <div className="p-8 ml-10 mr-10 mt-10 shadow-xl">
-          <h1>Recent Bills</h1>
-          <Tables />
-        </div>
-      </div>
-    </div>
+    <div></div>
+
+    
   );
 }
 
