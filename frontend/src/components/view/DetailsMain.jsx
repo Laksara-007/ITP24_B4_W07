@@ -6,7 +6,7 @@ const DetailsMain = () => {
     <div className="w-screen h-screen bg-gradient-to-t from-[#967F57] to-[#FFFFFF]">
       <div className="flex flex-col w-full  items-center justify-center mt-10">
         <span className="text-5xl font-medium">Heritage Hotel</span>
-        <span className="mt-10 max-w-7xl tracking-wider">
+        <span className="mt-10 max-w-7xl tracking-wider text-center">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
