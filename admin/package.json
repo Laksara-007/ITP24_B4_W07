@@ -30,7 +30,10 @@
     "recharts": "^2.1.16",
     "redux": "^4.2.0",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@react-pdf/renderer": "3.4.4",
+    "jspdf": "2.5.1",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
