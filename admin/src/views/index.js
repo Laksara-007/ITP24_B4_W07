@@ -15,6 +15,7 @@ import FileNotFound from "../components/errors/fileNotFound";
 import RoomRoutes from "./Room-view";
 import { useState } from "react";
 import UnAuthorized from "../components/errors/unAuthorized";
+import BillingHome from "./Billing-view/Billing-home/BillingHome";
 
 export const Views = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -44,7 +45,22 @@ export const Views = () => {
           }
         />
         <Route path="/customer/*" element={<CustomerRoutes />} />
-        <Route path="/billing/*" element={<BillingRoutes/>} />
+
+        <Route
+          path="/billing/"
+          element={user ? <BillingHome /> : <UnAuthorized />}
+        />
+        <Route
+          path="/billing/*"
+          element={
+            user?.otherDetails.staff.position === "ACCOUNTANT" ? (
+              <BillingRoutes />
+            ) : (
+              <UnAuthorized />
+            )
+          }
+        />
+
         <Route path="/room/*" element={<RoomRoutes />} />
         <Route path='/menu/*' element={<MenuRoutes/>}/>
         <Route path='/event/*' element={<EventRoutes/>}/>
