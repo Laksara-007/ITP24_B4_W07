@@ -7,7 +7,7 @@ const StaffDetails = ({ staff }) => {
   const exampleStaff = {
     totalStaff: 95,
     completionRate: 70, // Percentage completion rate
-    previousReleasesInfo: " Need to add something meaningful here.",
+    previousReleasesInfo: " HeadCount Turnover ",
   };
 
   return (

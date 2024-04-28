@@ -18,11 +18,11 @@ const StaffHome = () => {
           </div>
         </div>
 
-
+{/* 
         <div className="p-8 ml-10 mr-10 mt-10 shadow-xl">
           <h1>Staff Overview</h1>
           <Table1 />
-        </div>
+        </div> */}
       </div>
     </div>
   );

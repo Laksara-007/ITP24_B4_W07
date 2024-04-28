@@ -60,7 +60,7 @@ const StaffStats = () => {
     return (
         <div className="flex flex-col p-4" ref={componentRef}>
             <div className="flex justify-between mb-4">
-                <Button variant="contained" onClick={handlePrint}>Print Staff Details</Button>
+                {/* <Button variant="contained" onClick={handlePrint}>Print Staff Details</Button> */}
                 <Button variant="contained" onClick={handleExportPDF}>Export PDF</Button>
             </div>
             <div className="flex flex-row">

@@ -191,6 +191,7 @@ const StaffDetails = () => {
         </div>
 
         {/* List component with search functionality */}
+        <div className="flex justify-center w-full">
         <List
           response={users}
           title={"Staff Details"}
@@ -198,6 +199,7 @@ const StaffDetails = () => {
           searchTerm={searchTerm} // Pass search term to the List component
           setSearchTerm={setSearchTerm} // Pass setSearchTerm function to the List component
         />
+        </div>
       </div>
     </div>
   );

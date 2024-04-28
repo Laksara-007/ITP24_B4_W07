@@ -56,7 +56,7 @@ const HomeIndex = () => {
         </div>
       </Link>
 
-      <Link to='staff' className='w-1/4 h-[10rem] m-4'>
+      <Link to='staff/view' className='w-1/4 h-[10rem] m-4'>
         {/* <div className='flex flex-col shadow-xl h-full w-full justify-center items-center text-white font-semibold bg-[url("https://img.freepik.com/free-photo/human-resources-concept-with-hand_23-2150389119.jpg?t=st=1710919433~exp=1710923033~hmac=81d0ecbd982caf06b29c99b541bcdfa424e328ad74190b49731c5f77bdb7311f&w=1060")] object-cover rounded-lg  cursor-pointer hover:scale-105 transition-all ease-in-out duration-300'> */}
         <div className='flex flex-col shadow-xl h-full w-full justify-center items-center text-white font-semibold bg-[url("https://img.freepik.com/free-photo/silhouettes-businesspeople-office_1098-2957.jpg?w=1060")] bg-cover bg-center rounded-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300'>
 

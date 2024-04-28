@@ -7,6 +7,7 @@ import { deleteCustomerDetails } from "../../api/user/userServices";
 import { deleteBilling } from "../../api/billing/billingServices";
 import { deleteStaffDetails } from "../../api/staff/staffServices";
 import { deletePackage } from "../../api/package-api/packageServices";
+import RouteNotFound from "../errors/404";
 
 const List = ({ response, title, dataCols }) => {
   const navigate = useNavigate()
@@ -75,11 +76,14 @@ const List = ({ response, title, dataCols }) => {
                   ? "/billing/edit/" + params.row._id
                   : title === "Event"
                   ? "/event/edit/" + params.row._id
-                  :title === "Staff"
+                  :title === "Staff Details"
                   ? "/staff/edit/" + params.row._id
                   : title === "Package"
                   ? "/package/edit/" + params.row._id
-                  : "/customer/edit/" + params.row._id
+                  : title === "Customers"?
+                   "/customer/edit/" + params.row._id :
+                   console.log("No such route") 
+                   
               }
             >
               <button className="w-20 h-7 mr-3 border bg-primary border-primary text-white">
@@ -100,7 +104,7 @@ const List = ({ response, title, dataCols }) => {
   ];
 
   return (
-    <div className="ml-5 mt-5 shadow-lg mr-4">
+    <div className="ml-5 mt-5 shadow-lg mr-4 w-full" >
       {title}
       <div style={{ height: 500, width: "100%" }}>
         <DataGrid
