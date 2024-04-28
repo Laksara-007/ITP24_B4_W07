@@ -141,8 +141,8 @@ export const menuColumns = [
 
 export const billingColumns = [
   { field: "_id", headerName: "ID", width: 120 },
-  { field: "billingName", headerName: "Customer Name", width: 130 },
-  { field: "customerEmail", headerName: "Customer Email", width: 160 },
+  { field: "billingName", headerName: "Accountant Name", width: 130 },
+  { field: "customerEmail", headerName: "Email", width: 160 },
 
   {
     field: "paymentDate",
