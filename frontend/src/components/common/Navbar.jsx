@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [burgerNav, setBurgerNav] = useState(false);
@@ -9,7 +10,7 @@ const Navbar = () => {
   const navItems = [
     {
       name: "About",
-      path: "/",
+      path: "/about",
     },
     {
       name: "Facilities",
@@ -27,13 +28,23 @@ const Navbar = () => {
       name: "Offers",
       path: "/offers",
     },
-  ]
+    {
+      name: "Register",
+      path: "/register",
+    },
+  ];
   return (
     <div className="h-20 w-full bg-[#967F57] flex items-center shadow-xl fixed z-50 ">
       <div className="flex items-center w-full">
-        <div className="w-full ml-8 lg:ml-32">
-          <img src="images/heritageLogo.png" alt="Heritage" className="w-20" />
-        </div>
+        <Link to="/" className="w-full ml-8 lg:ml-32">
+          <div className="w-full ml-8 lg:ml-32">
+            <img
+              src="images/heritageLogo.png"
+              alt="Heritage"
+              className="w-32"
+            />
+          </div>
+        </Link>
 
         <div className="hidden lg:flex items-center w-full justify-between mr-32 no-underline">
           {navItems.map((item) => {
@@ -41,6 +52,7 @@ const Navbar = () => {
               <a href={item.path}>
                 <span
                   className={` font-medium font-sans text-white text-lg mr-8 cursor-pointer no-underline `}
+
                   onClick={() => setSelectedItem(item.name)}
                 >
                   {item.name}
@@ -90,7 +102,7 @@ const Navbar = () => {
         </nav>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,12 +1,10 @@
-import Navbar from "../components/common/Navbar";
 import Banner from "../components/view/Banner";
 import DetailsMain from "../components/view/DetailsMain";
-import PackageCard from "../components/view/PackageCard";
 import Slider from "../components/view/Slider";
 
 const Home = () => {
   return (
-    <div>
+    <div className="pt-20">
       <Banner />
       <DetailsMain />
       <Slider />
