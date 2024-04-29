@@ -1,10 +1,24 @@
 import React, { useState } from "react";
+import BookingModal from "./bookingModal";
 
 function ReservationView() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(
     new Date(startDate.getTime() + 24 * 60 * 60 * 1000)
   ); // Default 1 day after
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
+
+  
+  const handleBookNow = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
+
   const rooms = [
     // Replace with API call
     {
@@ -54,7 +68,7 @@ function ReservationView() {
 
   return (
     <div className="container mx-auto px-4 py-8 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Book Your Stay</h1>
+      <h1 className="text-3xl font-bold mb-6 mt-16">Book Your Stay</h1>
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="flex items-center">
           <label htmlFor="startDate" className="mr-2 text-gray-700">
@@ -101,7 +115,8 @@ function ReservationView() {
                     ${room.pricePerNight} / night
                   </span>
                 </div>
-                <button className="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button className="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                onClick={handleBookNow}>
                   Book Now
                 </button>
               </div>
@@ -112,6 +127,14 @@ function ReservationView() {
         <p className="text-gray-700 text-center">
           No rooms available for these dates.
         </p>
+      )}
+      {isModalOpen && (
+        <BookingModal
+          startDate={startDate}
+          endDate={endDate}
+          open={isModalOpen}
+          handleClose={handleCloseModal}
+        />
       )}
     </div>
   );
