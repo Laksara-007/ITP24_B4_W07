@@ -92,12 +92,12 @@ export const updateOrder = async (req, res) => {
     }
 };
 
-export const getAllOrders = async (req,res) => {
+export const getAllOrders = async (req, res) => {
     try {
-        const response = await getAllOrdersService()
+        const response = await getAllOrdersService();
         if (!response) return makeResponse({ res, status: 400, message: 'Orders cannot be fetch' });
         return makeResponse({ res, status: 200, data: response, message: 'Orders succesfully fetched' });
     } catch (error) {
         throw new badRequest(error.message);
     }
-}
+};

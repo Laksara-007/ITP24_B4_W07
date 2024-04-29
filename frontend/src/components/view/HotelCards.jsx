@@ -25,15 +25,22 @@ const HotelCards = () => {
     },
   ];
   return (
-    <div className="flex flex-col items-center px-10">
-      <span className="mt-24 text-2xl font-bold tracking-wider">
-        Heritage Hotel
+    <div className="flex flex-col items-center pt-28">
+      <span className="text-2xl font-normal tracking-wider capitalize">
+        HERITAGE HOTEL
       </span>
-      <span>Accomadation</span>
-
+      <div className="text-xl font-light pt-4 pb-8 text-center px-32">
+        Your explorations of Anuradhapura's historic core will take on new hues
+        after a delectable supper.The greatest option for individuals who like
+        to go on a culinary adventure is to visit the restaurants at Heritage
+        Hotel.Savor deliciously hot Asian and Sri Lankan cuisine, as well as
+        select your favorites from a variety of foreign cuisines. Take advantage
+        of our hotel's family-friendly setting as you dine and create treasured
+        memories.
+      </div>
       {rooms.map((room) => {
         return (
-          <div className="flex flex-row h-96 w-3/4 mt-6">
+          <div className="flex flex-row h-96 w-3/4 mt-6 mb-10">
             <div className="flex-1 p-2">
               <img src={room.image1} alt="room" className="h-full" />
             </div>

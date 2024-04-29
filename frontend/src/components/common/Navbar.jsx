@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [burgerNav, setBurgerNav] = useState(false);
@@ -9,7 +10,7 @@ const Navbar = () => {
   const navItems = [
     {
       name: "About",
-      path: "/",
+      path: "/about",
     },
     {
       name: "Facilities",
@@ -17,7 +18,7 @@ const Navbar = () => {
     },
     {
       name: "Room & Suits",
-      path: "/room&suits",
+      path: "/reservationView",
     },
     {
       name: "Dining",
@@ -27,24 +28,31 @@ const Navbar = () => {
       name: "Offers",
       path: "/offers",
     },
-  ]
+    {
+      name: "Register",
+      path: "/register",
+    },
+  ];
   return (
-    <div className="h-20 w-full bg-[#967F57] flex items-center shadow-xl fixed z-50">
+    <div className="h-20 w-full bg-[#967F57] flex items-center shadow-xl fixed z-50 ">
       <div className="flex items-center w-full">
-        <div className="w-full ml-8 lg:ml-32">
-          <img src="images/heritageLogo.png" alt="Heritage" className="w-20" />
-        </div>
+        <Link to="/" className="w-full ml-8 lg:ml-32">
+          <div className="w-full ml-8 lg:ml-32">
+            <img
+              src="images/heritageLogo.png"
+              alt="Heritage"
+              className="w-32"
+            />
+          </div>
+        </Link>
 
-        <div className="hidden lg:flex items-center w-full justify-between mr-32">
+        <div className="hidden lg:flex items-center w-full justify-between mr-32 no-underline">
           {navItems.map((item) => {
             return (
               <a href={item.path}>
                 <span
-                  className={`${
-                    item.name === selectedItem
-                      ? "text-[#1287AF]"
-                      : "text-white"
-                  } font-medium`}
+                  className={` font-medium font-sans text-white text-lg mr-8 cursor-pointer no-underline `}
+
                   onClick={() => setSelectedItem(item.name)}
                 >
                   {item.name}
@@ -57,7 +65,7 @@ const Navbar = () => {
         <TiThMenu
           className={`${
             !burgerNav ? "flex" : "hidden"
-          } lg:hidden h-8 w-8 right-0 fixed mr-8`}
+          } lg:hidden h-8 w-8 right-0 fixed mr-8 no-underline `}
           onClick={() => setBurgerNav(true)}
         />
       </div>
@@ -82,7 +90,7 @@ const Navbar = () => {
                       item.name === selectedItem
                         ? "text-white"
                         : "text-[#3E3E3E]"
-                    } font-medium text-2xl`}
+                    } font-medium text-2xl no-underline`}
                     onClick={() => setSelectedItem(item.name)}
                   >
                     {item.name}
@@ -94,7 +102,7 @@ const Navbar = () => {
         </nav>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

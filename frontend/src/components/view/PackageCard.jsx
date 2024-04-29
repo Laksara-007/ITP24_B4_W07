@@ -24,8 +24,8 @@ const PackageCard = () => {
       {packages.map((item) => {
         return (
           <div className='flex flex-col w-2/4 h-[450px] p-6 bg-white/5 shadow-xl rounded-lg items-center mx-4'>
-            <img src={item.img} className='w-4/5 h-48 rounded-xl  ' />
-            <span className='text-lg font-bold tracking-wider text-white'>{item.title}</span>
+            <img src={item.img} className='w-4/5 h-48 rounded-xl' alt='' />
+            <span className='text-lg font-bold tracking-wider text-white py-2'>{item.title}</span>
             <span className='text-sm text-black text-center'>{item.desc}</span>
         </div>
         )

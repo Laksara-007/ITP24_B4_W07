@@ -19,7 +19,7 @@ const Slider = () => {
     }, [currentSlide]);
   
     return (
-      <div className="slideshowContainer w-full h-screen">
+      <div className="slideshowContainer w-full">
         {slideShow.map((slide, index) => {
           const { img, text } = slide;
           return (
@@ -34,13 +34,15 @@ const Slider = () => {
                   <LazyLoadImage
                     src={img}
                     alt="slider image"
-                    className="sliderImg w-full h-screen object-cover"
+                    className="sliderImg w-full h-[600px] object-cover opacity-95"
                   />
   
-                  <div className="absolute max-w-xl top-1/3 lg:right-32 text-white font-semibold flex flex-col ml-8">
-                    <span className=" text-3xl lg:text-2xl">{text}</span>
+                  <div className="absolute max-w-xl top-1/3 lg:right-32 text-white font-semibold flex flex-col ml-8 bg-black bg-opacity-50 p-5">
+                    <span className=" text-3xl lg:text-5xl">{text}</span>
   
-                    <button className="border-none w-2/4 h-14 text-lg lg:w-56 lg:h-11 mt-5 bg-[#967F57]">
+                    <button className="border-none w-2/4 h-14 text-lg lg:w-56 lg:h-11 mt-5 bg-[#967F57]"
+                    onClick={() => window.location.href = "/reservationView"}
+                    >
                       Book Your Stay
                     </button>
                   </div>
