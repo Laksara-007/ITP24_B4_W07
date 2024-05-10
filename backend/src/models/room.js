@@ -16,12 +16,8 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please insert a type']
     },
-    maxGuests: {
-        type: Number,
-        required: [true, 'please insert the number of guests']
-    },
     unavailableDates: {
-        type: Array[Date]
+        type: [Date]
     }
 });
 
