@@ -178,15 +178,20 @@ class RoomDataView extends React.Component {
           <ModalHeader toggle={this.handleModal}>Enter New values</ModalHeader>
           <ModalBody>
             <Form>
-              <FormGroup>
+            <FormGroup>
                 <Label for="Type">Type</Label>
                 <Input
-                  type="Text"
                   name="type"
                   id="UpdateType"
                   value={type}
                   onChange={this.getValue}
-                />
+                  type="select"
+                >
+                  <option>DELUX</option>
+                  <option>SUPREAME</option>
+                  <option>VIP</option>
+                  <option>STANDARD</option>
+                </Input>
               </FormGroup>
               <FormGroup>
                 <Label for="description">Description</Label>
@@ -233,11 +238,17 @@ class RoomDataView extends React.Component {
               <FormGroup>
                 <Label for="Type">Type</Label>
                 <Input
-                  type="Text"
                   name="type"
                   id="UpdateType"
+                  value={type}
                   onChange={this.getValue}
-                />
+                  type="select"
+                >
+                  <option>DELUX</option>
+                  <option>SUPREAME</option>
+                  <option>VIP</option>
+                  <option>STANDARD</option>
+                </Input>
               </FormGroup>
               <FormGroup>
                 <Label for="description">Description</Label>
@@ -249,7 +260,7 @@ class RoomDataView extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="Type">Price</Label>
+                <Label for="Type">Price per night</Label>
                 <Input
                   type="number"
                   name="price"
