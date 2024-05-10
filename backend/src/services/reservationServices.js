@@ -1,6 +1,6 @@
 import { createReservation, getAllReservations, getReservationById, updateReservation, deleteReservation, getReservationByUserId } from '../repositary/reservationRepositary';
 import { makeResponse } from '../utils/response';
-import { getAllRooms } from '../repositary/roomRepositary';
+
 
 export const createReservationService = async (reservationBody) => {
     const reservation = await createReservation(reservationBody);
