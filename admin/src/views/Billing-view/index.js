@@ -9,6 +9,8 @@ import BillingDetails from "./Billing-details/BillingDetails";
 import BillingForm from "./Billing-form/BillingForm";
 import { Route, Routes } from "react-router-dom";
 import BillingHome from "./Billing-home/BillingHome";
+import BillingSalary from './Billing-salary/BillingSalary';
+import BillingReports from './Billing-reports/BillingReports';
 
 const sideNavData = [
   {
@@ -25,15 +27,15 @@ const sideNavData = [
   },
   {
     id: "1",
-    title: "Financial Stats",
+    title: "Reports",
     icon: <QueryStatsIcon />,
-    url: "/billing/financial-stats",
+    url: "/billing/reports",
   },
   {
     id: "1",
     title: "Salary info",
     icon: <AttachMoneyIcon />,
-    url: "/stats",
+    url: "/billing/salary-info",
   },
 ];
 
@@ -50,6 +52,8 @@ const Index = () => {
           <Route path="view" element={<BillingDetails />} />
           <Route path="add" element={<BillingForm />} />
           <Route path="edit/:id" element={<BillingForm />} />
+          <Route path="salary-info" element={<BillingSalary />} />
+          <Route path="reports" element={<BillingReports />} />
         </Routes>
       </div>
     </div>

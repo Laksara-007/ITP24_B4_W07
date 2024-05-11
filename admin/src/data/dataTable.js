@@ -140,16 +140,16 @@ export const menuColumns = [
 
 
 export const billingColumns = [
-  { field: "_id", headerName: "ID", width: 120 },
-  { field: "billingName", headerName: "Customer Name", width: 130 },
-  { field: "customerEmail", headerName: "Customer Email", width: 160 },
+  { field: "_id", headerName: "ID", width: 220 },
+  { field: "billingName", headerName: "Accountant Name", width: 160 },
+  { field: "customerEmail", headerName: "Accountant Email", width: 160 },
 
   {
     field: "paymentDate",
     headerName: "Date",
     description: "Sortable.",
     sortable: true,
-    width: 160,
+    width: 110,
   },
   {
     field: "description",
@@ -163,7 +163,7 @@ export const billingColumns = [
     headerName: "Amount(Rs.)",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
-    width: 160,
+    width: 170,
   },];
 
 export const staffColumns = [

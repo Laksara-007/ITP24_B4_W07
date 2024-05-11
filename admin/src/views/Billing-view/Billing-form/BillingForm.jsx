@@ -28,7 +28,7 @@ const BillingForm = () => {
         <div className="flex item-center justify-center">
             <Form
                 formInfo={formInfo}
-                title={path === "add" ? "CREATE BILLING" : "EDIT BILLING"}
+                title={path === "add" ? "CREATE BILLING" : "EDIT BILL"}
                 func={
                     route === "billing"
                         ? path === "add"
