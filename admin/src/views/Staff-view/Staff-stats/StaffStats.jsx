@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { getAllStaff } from "../../../api/staff/staffServices";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 import { useReactToPrint } from 'react-to-print';
-import { PDFViewer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { jsPDF } from 'jspdf';
 
 const StaffStats = () => {
