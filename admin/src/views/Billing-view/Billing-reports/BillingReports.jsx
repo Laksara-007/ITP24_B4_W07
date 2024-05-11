@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 
 const BillingReports = () => {
@@ -21,49 +22,42 @@ useEffect(() => {
   });
 }, []);
 
+
 const handleExportPDF = () => {
-  const doc = new jsPDF();  
+    const doc = new jsPDF();
 
-  // Define initial y-coordinate
-  let yPos = 10;
-
-  // Add content to the PDF document
-  rows.forEach(row => {
-      doc.text(`BillingID: ${row._id}`, 10, yPos);
-      yPos += 10; // Increase y-coordinate for the next line
-
-      doc.text(`Billing Name: ${row.billingName}`, 10, yPos);
-      yPos += 10;
-
-      doc.text(`Billing Number: ${row.total}`, 10, yPos);
-      yPos += 10;
-      doc.text(`Billing Date: ${row.date}`, 10, yPos);
-      yPos += 10;
-
-
-
-      // Add spacing between each group of data
-      yPos += 10;
-
-      // Check if there's enough space for the next entry, add a new page if necessary
-      if (yPos >= 290) {
-          doc.addPage();
-          yPos = 10; // Reset y-coordinate for the new page
-      }
-  });
-
-  // Save the PDF
-  doc.save('Expences Details.pdf');
-};  
+    doc.setFontSize(16);
+  doc.text('Internal Expences', 10, 10);
+  
+    // Table Header
+    const headers = [['Billing ID', 'Billing Name', 'Billing Date', 'Billing Total']];
+  
+    // Table Data
+    const data = rows.map(row => [row._id, row.billingName, row.date, row.total]);
+  
+    // Generate the table
+    doc.autoTable({
+      head: headers,
+      body: data,
+      startY: 20,
+      theme: 'grid', // Optional - add grid theme to the table
+      styles: { font: 'Arial', fontStyle: 'bold', fontSize: 10 },
+      columnStyles: { 0: { cellWidth: 30 }, 1: { cellWidth: 60 }, 2: { cellWidth: 40 }, 3: { cellWidth: 30 } } // Optional - set column width
+    });
+  
+    // Save the PDF
+    doc.save('Expenses Details.pdf');
+  };
+ 
 
   return (
     <div className="flex flex-col " ref={componentRef}>
             <div className="flex justify-between ">
-                <Button className='bg-blue-black align-top' onClick={handleExportPDF}>Export PDF</Button>
+            <Button onClick={handleExportPDF} color="error">Export PDF</Button>
             </div>
             <div className="flex flex-row">
                 <div className="flex flex-col flex-1 p-4">
-                    <span>Internal Expences </span>
+                <h1  className=" flex justify-center font-bold"style={{ fontSize: '2rem', marginBottom: '1rem' }}>Internal Expences Report</h1>
                     <div className="mt-1 p-1">
                         <TableContainer component={Paper} className="table relative">
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">

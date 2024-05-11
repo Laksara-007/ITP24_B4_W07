@@ -11,13 +11,14 @@ import { Route, Routes } from "react-router-dom";
 import BillingHome from "./Billing-home/BillingHome";
 import BillingSalary from './Billing-salary/BillingSalary';
 import BillingReports from './Billing-reports/BillingReports';
+import BillingCustomer from './Billing-customer/BillingCustomer';
 
 const sideNavData = [
   {
     id: "1",
     title: "Overview",
     icon: <SummarizeIcon />,
-    url: "/billing/overview",
+    url: "/billing",
   },
   {
     id: "2",
@@ -48,12 +49,13 @@ const Index = () => {
 
       <div className="flex-[7]">
         <Routes>
-          <Route path="overview" element={<BillingHome />} />
+          <Route path="/" element={<BillingHome />} />
           <Route path="view" element={<BillingDetails />} />
           <Route path="add" element={<BillingForm />} />
           <Route path="edit/:id" element={<BillingForm />} />
           <Route path="salary-info" element={<BillingSalary />} />
           <Route path="reports" element={<BillingReports />} />
+          <Route path="customer-payments" element={<BillingCustomer />} />
         </Routes>
       </div>
     </div>
