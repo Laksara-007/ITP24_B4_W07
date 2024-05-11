@@ -51,7 +51,8 @@ const List = ({ response, title, dataCols }) => {
       })
     }
       
-    if (title === "Staff") {
+    if (title === "Staff Details") {
+      console.log("hello")
       deleteStaffDetails(id).then((res) => {
         if(res.success === true) navigate(0)
         else alert(res.message)
@@ -92,7 +93,10 @@ const List = ({ response, title, dataCols }) => {
             </Link>
 
             <button
-              onClick={() => handleDelete(params.row._id)}
+              onClick={() => {
+                console.log("Click");
+                handleDelete(params.row._id)
+              }}
               className="w-20 h-7 mr-3 border border-[#D31616] text-[#D31616]"
             >
               Delete
