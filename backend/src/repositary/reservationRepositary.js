@@ -1,8 +1,25 @@
 import reservationModel from '../models/reservation';
+import roomModel from '../models/room';
+import { makeResponse } from '../utils/response';
 
 export const createReservation = async (body) => {
     const response = await reservationModel.create(body);
-    if (!response) {
+    const room = await roomModel.findById(body.roomId);
+   //push the dates from start date to end date to the room unavailable dates
+    const dates = [];
+    const startDate = new Date(body.startDate);
+    const endDate = new Date(body.endDate);
+    const currentDate = startDate;
+    for (currentDate; currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
+        dates.push(new Date(currentDate));
+    }
+    console.log("Dates: ", dates);
+    room.unavailableDates = room.unavailableDates.concat(dates);
+    // room.unavailableDates.push(dates);
+    console.log("Room: ", room);
+    const roomres = await room.save();
+
+    if (!response || !roomres) {
         return makeResponse(res, 404, null, 'Reservation not created');
     } else {
         return response;
@@ -55,11 +72,21 @@ export const getReservationByUserId = async (req, res) => {
     }
 };
 
-export const getavailableRooms = async (req, res) => {
-    const reservation = await reservationModel.find({ userId: req.params.id });
-    if (!reservation) {
-        return makeResponse(res, 404, null, 'Reservation not found');
-    } else {
-        return reservation;
-    }
+export const getFreeRooms = async (req, res) => {
+    const startDate = req.body.startDate;
+    const endDate = req.body.endDate;
+    const allrooms = await roomModel.find();
+    const awailableRooms = allrooms.filter((room) => {
+        let isAvailable = true;
+        room.unavailableDates.forEach((date) => {
+            if (date >= startDate && date <= endDate) {
+                isAvailable = false;
+                return;
+            }
+        });
+        //update here to return if only available
+        return room;
+    });
+    return awailableRooms;
 };
+
