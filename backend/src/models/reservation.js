@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 const reservationSchema = new mongoose.Schema(
     {
+        customerName: {
+            type: String,
+        },
         roomId: {
             type: String,
             required: [true, 'Please provide a Id ']

@@ -32,6 +32,7 @@ const BookingStats = () => {
         return {
           _id: row._id,
           name: row.roomType,
+          customerName: row.customerName,
           price: row.price,
           name: row.name,
           startDate: format(new Date(row.startDate), "dd/MM/yyyy"),
@@ -72,7 +73,7 @@ const BookingStats = () => {
                   {rows?.map((row) => (
                     <TableRow key={row?._id}>
                       <TableCell>{row?._id}</TableCell>
-                      <TableCell>{row?.name}</TableCell>
+                      <TableCell>{row?.customerName}</TableCell>
                       <TableCell>{row?.price}</TableCell>
                       <TableCell>{row?.name}</TableCell>
                       <TableCell>{row?.startDate }</TableCell>
