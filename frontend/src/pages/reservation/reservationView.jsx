@@ -129,9 +129,14 @@ function ReservationView() {
     setFilteredRooms(filtered);
   };
 
-  const createReservation = async () => {
+  const createReservation = async ( name) => {
+    if (name === "") {
+      alert("Please enter your name");
+      return;
+    }
     console.log(" currentRoom: ", currentRoom )
     const reservation = {
+      customerName: name,
       roomId: currentRoom.roomId,
       name: currentRoom.name,
       price: currentPrice,
@@ -144,6 +149,8 @@ function ReservationView() {
       console.log("Reservation created: ", response.data);
       alert("Reservation created successfully!");
       handleCloseModal();
+      //redirect to home page
+      window.location.href = "/";
     } catch (error) {
       console.error("Error creating reservation: ", error);
       alert("Error creating reservation");

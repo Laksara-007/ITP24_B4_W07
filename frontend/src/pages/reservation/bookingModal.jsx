@@ -3,7 +3,11 @@ import { Button, Modal, Typography } from '@mui/material';
 import { format } from 'date-fns';
 
 const BookingModal = ({ open, handleClose, startDate, endDate, price, createReservation}) => {
-    console.log("BookingModal -> currentPrice", price)
+    const [name, setName] = useState('');
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
     return (
         <Modal open={open} onClose={handleClose}>
             <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -12,6 +16,18 @@ const BookingModal = ({ open, handleClose, startDate, endDate, price, createRese
                         Booking Information
                     </Typography>
                     <form>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={handleNameChange}
+                                id='CustomerName'
+                                className="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                        </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Price
@@ -52,7 +68,7 @@ const BookingModal = ({ open, handleClose, startDate, endDate, price, createRese
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={createReservation}
+                                onClick={()=> createReservation(name)}
                             >
                                 Book Now
                             </Button>
