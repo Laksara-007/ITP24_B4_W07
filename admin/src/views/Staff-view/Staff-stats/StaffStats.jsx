@@ -17,11 +17,6 @@ const StaffStats = () => {
         });
     }, []);
 
-    const handlePrint = useReactToPrint({
-        content: () => componentRef.current,
-        documentTitle: 'Staff Details Report',
-    });
-
     const handleExportPDF = () => {
         const doc = new jsPDF();
     
