@@ -10,7 +10,8 @@ import Paper from "@mui/material/Paper";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
 import { tabsClasses } from "@mui/material";
-// import { getAllReservations } from "../../../api/reservation/reservationService";
+import { getAllReservations } from "../../../api/reservation/reservationService";
+import {format} from "date-fns/format";
 
 const BookingStats = () => {
   const componentRef = useRef();
@@ -21,56 +22,24 @@ const BookingStats = () => {
     documentTitle: "prescription-data",
   });
 
-  //   useEffect(() => {
-  //     const unsub = false;
-  //     if (!unsub) {
-  //       getAllReservations().then((res) => {
-  //         if (!res.success) {
-  //         } else {
-  //           console.log(res.data);
-  //           setRows(res.data);
-  //         }
-  //       })
-  //     }
-
-  //     return () => {
-  //       unsub = true;
-  //     };
-  //   }, []);
-
-  const sampleData = [
-    {
-      _id: 1,
-      name: "John Doe",
-      price: 100,
-      type: "Single Room",
-      date: "2022-10-10",
-    },
-    {
-      _id: 2,
-      name: "Jane Smith",
-      price: 150,
-      type: "Double Room",
-      date: "2022-10-11",
-    },
-    {
-      _id: 3,
-      name: "Alice Johnson",
-      price: 200,
-      type: "Suite",
-      date: "2022-10-12",
-    },
-    {
-      _id: 4,
-      name: "Bob Williams",
-      price: 120,
-      type: "Single Room",
-      date: "2022-10-13",
-    },
-  ];
-
   useEffect(() => {
-    setRows(sampleData);
+    getAllReservations().then((res) => {
+      console.log(res.data);
+      const sorted = res.data.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      const formatted = sorted.map((row) => {
+        return {
+          _id: row._id,
+          name: row.roomType,
+          price: row.price,
+          name: row.name,
+          startDate: format(new Date(row.startDate), "dd/MM/yyyy"),
+          endDate: format(new Date(row.endDate), "dd/MM/yyyy"),
+        };
+      });
+      setRows(formatted);
+    });
   }, []);
 
   return (
@@ -95,7 +64,8 @@ const BookingStats = () => {
                     <TableCell>Name</TableCell>
                     <TableCell>Price</TableCell>
                     <TableCell>Room Type</TableCell>
-                    <TableCell>Date</TableCell>
+                    <TableCell>Start Date</TableCell>
+                    <TableCell>End Date</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -104,8 +74,9 @@ const BookingStats = () => {
                       <TableCell>{row?._id}</TableCell>
                       <TableCell>{row?.name}</TableCell>
                       <TableCell>{row?.price}</TableCell>
-                      <TableCell>{row?.type}</TableCell>
-                      <TableCell>{row?.date}</TableCell>
+                      <TableCell>{row?.name}</TableCell>
+                      <TableCell>{row?.startDate }</TableCell>
+                      <TableCell>{row?.endDate}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
