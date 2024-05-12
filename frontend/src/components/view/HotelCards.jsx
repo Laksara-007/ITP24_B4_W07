@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { createFeedbacks } from "../../api/feedbacks";
+import { ToastContainer, toast } from "react-toastify";
 
 const HotelCards = () => {
   const rooms = [
@@ -29,6 +31,22 @@ const HotelCards = () => {
 
   const toggleFeedbackCard = () => {
     setFeedbackCard(!feedbackCard);
+  };
+
+  const [feedbacks, setFeedbacks] = useState("");
+
+  const AddFeedbacks = async () => {
+    try {
+      const feedbackData = {
+        feedback: feedbacks,
+      };
+
+      const response = await createFeedbacks(feedbackData);
+      console.log("Feedback created successfully:", response);
+      toast.success(`Feedback added successfully`);
+    } catch (error) {
+      console.error("Error adding feedback:", error);
+    }
   };
 
   return (
@@ -65,9 +83,14 @@ const HotelCards = () => {
                         type="text"
                         placeholder="Enter your feedback"
                         className="h-20 w-full rounded-r-[7px] rounded-l-[7px] bg-white px-3 py-2.5 text-base font-normal text-blue-gray-700  outline outline-none placeholder:text-gray-500 focus:border-r-2 focus:border-y-2 disabled:border-0 bg-blue-gray-50 border border-black"
+                        onChange={(e) => setFeedbacks(e.target.value)}
+                        value={feedbacks}
                       />
                       <div className="flex flex-row w-full gap-1">
-                        <button className="bg-transparent border-2 border-white mt-2 w-2/4 text-white">
+                        <button
+                          className="bg-transparent border-2 border-white mt-2 w-2/4 text-white"
+                          onClick={AddFeedbacks}
+                        >
                           SUBMIT
                         </button>
                         <button
@@ -99,6 +122,7 @@ const HotelCards = () => {
           );
         })}
       </>
+      <ToastContainer />
     </div>
   );
 };
