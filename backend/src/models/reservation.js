@@ -2,27 +2,26 @@ import mongoose from 'mongoose';
 
 const reservationSchema = new mongoose.Schema(
     {
-        idNumber: {
-            type: Number,
-            required: [true, 'Please provide a Id Number']
+        roomId: {
+            type: String,
+            required: [true, 'Please provide a Id ']
         },
         name: {
             type: String,
             required: [true, 'Please provide a name']
         },
         price: {
-            type: String,
-            required: [true, 'please insert an email']
+            type: Number,
+            required: [true, 'please insert an price']
         },
-        startingDate: {
+        startDate: {
             type: Date,
             required: [true, 'please select a starting date']
         },
-        endingDate: {
+        endDate: {
             type: Date,
             required: [true, 'please select an ending date']
         },
-        roomNumbers: [{ number: Number, unavailableDates: { type: [Date] } }]
     },
     { timestamps: true }
 );
