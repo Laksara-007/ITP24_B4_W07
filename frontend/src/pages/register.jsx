@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { createCustomer } from "../api/userServices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhonenumber, setCustomerPhonenumber] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
-  const [customerRanking, setCustomerRanking] = useState("");
+  // const [customerRanking, setCustomerRanking] = useState("");
 
   const handleRegister = async () => {
     try {
@@ -15,16 +17,17 @@ const Register = () => {
         customerEmail: customerEmail,
         customerPhonenumber: customerPhonenumber,
         customerAddress: customerAddress,
-        customerRanking: customerRanking,
+        // customerRanking: customerRanking,
       };
 
       const response = await createCustomer(customerData);
       console.log("Customer created successfully:", response);
+      toast.success(`${customerName} registered successfully`);
       setCustomerName("");
       setCustomerEmail("");
       setCustomerPhonenumber("");
       setCustomerAddress("");
-      setCustomerRanking("");
+      // setCustomerRanking("");
     } catch (error) {
       console.error("Error creating customer:", error);
     }
@@ -33,7 +36,7 @@ const Register = () => {
   return (
     <div className="min-h-screen bg-[#977F57] bg-opacity-40">
       <div className="flex w-full m-auto justify-center items-center">
-        <form className="p-10 flex flex-col gap-4 max-w-[40%] h-full w-full bg-white rounded-lg mt-60">
+        <form className="p-10 flex flex-col gap-4 max-w-[40%] h-full w-full bg-white rounded-lg mt-40">
           <div className="text-center text-xl font-medium">Register</div>
           <div className="">
             <div>
@@ -91,7 +94,7 @@ const Register = () => {
               />
             </div>
           </div>
-          <div className="">
+          {/* <div className="">
             <div>
               <div className="text-base font-normal">Ranking</div>
             </div>
@@ -106,7 +109,7 @@ const Register = () => {
                 <option value="REGULAR">Regular</option>
               </select>
             </div>
-          </div>
+          </div> */}
           <div className="flex justify-center">
             <button
               className="bg-[#F59E0B] text-white rounded-[7px] px-3 py-2 text-base font-medium"
@@ -118,6 +121,7 @@ const Register = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
