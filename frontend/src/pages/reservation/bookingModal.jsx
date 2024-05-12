@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Modal, Typography } from '@mui/material';
-const BookingModal = ({ open, handleClose }) => {
+import { format } from 'date-fns';
+
+const BookingModal = ({ open, handleClose, startDate, endDate, price, createReservation}) => {
+    const [name, setName] = useState('');
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
     return (
         <Modal open={open} onClose={handleClose}>
             <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -11,11 +18,23 @@ const BookingModal = ({ open, handleClose }) => {
                     <form>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={handleNameChange}
+                                id='CustomerName'
+                                className="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Price
                             </label>
                             <input
                                 type="text"
-                                value="$PRICE_VALUE$"
+                                value= {price}
                                 readOnly
                                 className="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
@@ -26,7 +45,7 @@ const BookingModal = ({ open, handleClose }) => {
                             </label>
                             <input
                                 type="text"
-                                value="$START_DATE_VALUE$"
+                                value={format(new Date(startDate), 'dd/MM/yyyy')}
                                 readOnly
                                 className="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
@@ -37,14 +56,21 @@ const BookingModal = ({ open, handleClose }) => {
                             </label>
                             <input
                                 type="text"
-                                value="$END_DATE_VALUE$"
+                                value={format(new Date(endDate), 'dd/MM/yyyy')}
                                 readOnly
                                 className="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                        <div className="flex justify-end">
-                            <Button variant="contained" onClick={handleClose}>
+                        <div className="flex justify-between">
+                            <Button variant="contained"  color="error" onClick={handleClose}>
                                 Close
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={()=> createReservation(name)}
+                            >
+                                Book Now
                             </Button>
                         </div>
                     </form>
