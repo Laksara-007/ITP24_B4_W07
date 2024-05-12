@@ -3,6 +3,7 @@ import { getAllStaff } from "../../../api/staff/staffServices";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 const StaffStats = () => {
     const [rows, setRows] = useState([]);
@@ -24,37 +25,30 @@ const StaffStats = () => {
     const handleExportPDF = () => {
         const doc = new jsPDF();
     
-        // Define initial y-coordinate
-        let yPos = 10;
+        doc.setFontSize(16);
+        doc.text('Staff Details', 10, 10);
     
-        // Add content to the PDF document
-        rows.forEach(row => {
-            doc.text(`Staff ID: ${row._id}`, 10, yPos);
-            yPos += 10; // Increase y-coordinate for the next line
+        // Table Header
+        const headers = [['Staff ID', 'Staff Name', 'Phone Number', 'Position']];
     
-            doc.text(`Staff Name: ${row.firstName}`, 10, yPos);
-            yPos += 10;
+        // Table Data
+        const data = rows.map(row => [row._id, row.firstName, row.phoneNumber, row.position]);
     
-            doc.text(`Phone Number: ${row.phoneNumber}`, 10, yPos);
-            yPos += 10;
-    
-            doc.text(`Position: ${row.position}`, 10, yPos);
-            yPos += 10;
-    
-            // Add spacing between each group of data
-            yPos += 10;
-    
-            // Check if there's enough space for the next entry, add a new page if necessary
-            if (yPos >= 290) {
-                doc.addPage();
-                yPos = 10; // Reset y-coordinate for the new page
-            }
+        // Generate the table
+        doc.autoTable({
+            head: headers,
+            body: data,
+            startY: 20,
+            theme: 'grid',
+            styles: { font: 'Arial', fontStyle: 'bold', fontSize: 10 },
+            columnStyles: { 0: { cellWidth: 30 }, 1: { cellWidth: 60 }, 2: { cellWidth: 40 }, 3: { cellWidth: 30 } }
         });
     
         // Save the PDF
         doc.save('Staff Details.pdf');
     };
-
+    
+    
 
     return (
         <div className="flex flex-col p-4" ref={componentRef}>
