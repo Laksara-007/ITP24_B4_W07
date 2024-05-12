@@ -7,15 +7,12 @@ const DetailsMain = () => {
       <div className="flex flex-col w-full  items-center justify-center mt-10">
         <span className="text-5xl font-medium">Heritage Hotel</span>
         <span className="mt-10 max-w-7xl tracking-wider text-center">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Welcome to Heritage Hotel, where elegance meets comfort. Nestled in
+          the heart of Anuradapura, our boutique hotel offers a blend of historic
+          charm and modern amenities. Whether you're here for business or
+          leisure, our attentive staff ensures a memorable stay. Indulge in
+          luxurious accommodations, exquisite dining, and personalized service.
+          Experience the legacy of hospitality at Heritage Hotel
         </span>
       </div>
 

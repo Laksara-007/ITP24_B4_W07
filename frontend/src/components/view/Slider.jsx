@@ -40,7 +40,9 @@ const Slider = () => {
                   <div className="absolute max-w-xl top-1/3 lg:right-32 text-white font-semibold flex flex-col ml-8 bg-black bg-opacity-50 p-5">
                     <span className=" text-3xl lg:text-5xl">{text}</span>
   
-                    <button className="border-none w-2/4 h-14 text-lg lg:w-56 lg:h-11 mt-5 bg-[#967F57]">
+                    <button className="border-none w-2/4 h-14 text-lg lg:w-56 lg:h-11 mt-5 bg-[#967F57]"
+                    onClick={() => window.location.href = "/reservationView"}
+                    >
                       Book Your Stay
                     </button>
                   </div>
