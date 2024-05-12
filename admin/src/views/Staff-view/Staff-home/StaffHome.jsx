@@ -1,7 +1,4 @@
 import React from "react";
-import Charts from "../../../components/Charts/Charts";
-import Featured from "../../../components/Featured/Featured";
-import Table1 from "../../../components/Tables/Table1";
 import Employee from "../../../components/Employee/Employee";
 import Headcount from "../../../components/Headcount/Headcount";
 
