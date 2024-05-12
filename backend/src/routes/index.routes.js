@@ -11,6 +11,7 @@ import billingRoute from './billing.routes.js';
 import eventRoute from './event.routes.js';
 import packageRoute from './package.routes.js';
 import roomRoute from './room.routes.js';
+import feedbacksRoute from './feedbacks.routes';
 
 const router = express.Router();
 
@@ -25,6 +26,8 @@ router.use('/billing', billingRoute);
 router.use('/event', eventRoute);
 router.use('/package', packageRoute);
 router.use('/room', roomRoute);
+router.use('/feedbacks', feedbacksRoute);
 router.use('/reservation', resRouter);
+
 
 export default router;
