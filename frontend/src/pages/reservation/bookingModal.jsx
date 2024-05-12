@@ -45,16 +45,16 @@ const BookingModal = ({ open, handleClose, startDate, endDate, price, createRese
                                 className="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                        <div className="flex justify-end">
+                        <div className="flex justify-between">
+                            <Button variant="contained"  color="error" onClick={handleClose}>
+                                Close
+                            </Button>
                             <Button
                                 variant="contained"
                                 color="primary"
                                 onClick={createReservation}
                             >
                                 Book Now
-                            </Button>
-                            <Button variant="contained" onClick={handleClose}>
-                                Close
                             </Button>
                         </div>
                     </form>

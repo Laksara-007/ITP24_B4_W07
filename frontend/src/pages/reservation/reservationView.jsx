@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import BookingModal from "./bookingModal";
 import axios from "axios";
-import { format, addDays, parseISO } from "date-fns";
+import { format, addDays, parseISO, formatISO, isAfter, isBefore, isSameDay } from "date-fns";
 
 
 function ReservationView() {
@@ -10,6 +10,7 @@ function ReservationView() {
     format(addDays(parseISO(startDate), 1), "yyyy-MM-dd")
   );
   const [rooms, setRooms] = useState([]); 
+  const [filteredRooms, setFilteredRooms] = useState([]); // Track filtered rooms [default empty array]
   const [currentRoom, setCurrentRoom] = useState(null); // Track current room [default null]
   const [currentPrice, setCurrentPrice] = useState(0); // Track current price [default 0]
   const [isModalOpen, setIsModalOpen] = useState(false); // Track modal 
@@ -29,19 +30,23 @@ function ReservationView() {
             name: room.type,
             description: room.description,
             maxGuests: 2,
-            pricePerNight: room.price
+            pricePerNight: room.price,
+            unavailableDates: room.unavailableDates || [],
           };
           switch (room.type) {
-            case "delux":
-              ret.imageUrl = "https://via.placeholder.com/300x200https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
+            case "DELUX":
+              ret.imageUrl = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
               break;
-            case "standard":
-              ret.imageUrl = "https://images.unsplash.com/photo-1618221823713-ca8c0e6c9992?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80";
+            case "STANDARD":
+              ret.imageUrl = "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
               break;
-            case "supreme":
+            case "SUPREME":
               ret.imageUrl = "https://images.unsplash.com/photo-1572987669554-0ba2ba9aee1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
               break;
-            default:
+            case "VIP":
+              ret.imageUrl = "https://images.unsplash.com/photo-1660731513683-4cb0c9ac09b8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+              break;
+              default:
               ret.imageUrl = "https://images.unsplash.com/photo-1618221823713-ca8c0e6c9992?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80";
               break;
           }
@@ -51,13 +56,18 @@ function ReservationView() {
       })
       .catch(error => {
         console.error("Error fetching rooms:", error);
+      }).finally(() => {
+        filterRooms();
       });
   }, []);
  
   const handleBookNow = ( pricePerNight ) => {
     // calculate the total price using the price per night and the number of days
-    const totalDays = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
+    var totalDays = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
     console.log("Total days: ", totalDays);
+    if (totalDays < 1) {
+      totalDays = 1;
+    }
     setCurrentPrice(pricePerNight * totalDays);
     console.log("Current price: ", currentPrice);
     // setCurrentPrice(pricePerNight);
@@ -76,6 +86,7 @@ function ReservationView() {
     }else{
       const newStartDate = format(new Date(event.target.value), "yyyy-MM-dd");
       setStartDate(newStartDate);
+      filterRooms();
     }
     
   };
@@ -88,7 +99,34 @@ function ReservationView() {
     }else{
       const newEndDate = format(new Date(event.target.value), "yyyy-MM-dd");
       setEndDate(newEndDate);
+      filterRooms();
     }
+  };
+
+  const filterRooms = () => {
+    console.log("Filtering rooms with rooms: ", rooms);
+    const filtered = rooms.filter((room) => {
+      let isAvailable = true;
+      console.log("Room: ", room);
+      console.log("Room unavailable dates: ", room.unavailableDates);
+      console.log("Start date: ", formatISO(new Date(startDate)) );
+      console.log("End date: ", formatISO(new Date(endDate)) );
+      if (room.unavailableDates.length === 0) {
+        return room;
+      }
+      room.unavailableDates.forEach((date) => {
+        if ((isAfter( new Date(date), new Date(startDate)) && isBefore(new Date(date),new Date(endDate)))){
+          isAvailable = false;
+        }
+        if(isSameDay(new Date(date), new Date(startDate)) || isSameDay(new Date(date), new Date(endDate))){
+          isAvailable = false;
+        }
+      });
+      if (isAvailable) {
+        return room;
+      }
+    });
+    setFilteredRooms(filtered);
   };
 
   const createReservation = async () => {
@@ -142,9 +180,9 @@ function ReservationView() {
           />
         </div>
       </div>
-      {rooms.length > 0 ? (
+      {filteredRooms.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {rooms.map((room) => (
+          {filteredRooms.map((room) => (
             <div key={room.roomId} className="shadow rounded-md overflow-hidden">
               <img
                 src={room.imageUrl}

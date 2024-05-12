@@ -10,12 +10,13 @@ export const createReservation = async (body) => {
     const startDate = new Date(body.startDate);
     const endDate = new Date(body.endDate);
     const currentDate = startDate;
-    while (currentDate <= endDate) {
-        dates.push(currentDate);
-        room.unavailableDates.push(currentDate);
-        currentDate.setDate(currentDate.getDate() + 1);
+    for (currentDate; currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
+        dates.push(new Date(currentDate));
     }
+    console.log("Dates: ", dates);
+    room.unavailableDates = room.unavailableDates.concat(dates);
     // room.unavailableDates.push(dates);
+    console.log("Room: ", room);
     const roomres = await room.save();
 
     if (!response || !roomres) {

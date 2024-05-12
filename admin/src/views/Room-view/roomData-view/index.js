@@ -23,7 +23,7 @@ class RoomDataView extends React.Component {
       showCreate: false,
       rooms: [],
       selectedRoom: [],
-      type: "",
+      type: "DELUX",
       description: "",
       price: 0,
     };
@@ -138,7 +138,8 @@ class RoomDataView extends React.Component {
 
   getValue = async (event) => {
     let value = event.target.value;
-    await this.setState({ [event.target.name]: value });
+    this.setState({ [event.target.name]: value });
+    console.log(this.state);
   };
 
   render() {
@@ -182,7 +183,7 @@ class RoomDataView extends React.Component {
                 <Label for="Type">Type</Label>
                 <Input
                   name="type"
-                  id="UpdateType"
+                  id="type"
                   value={type}
                   onChange={this.getValue}
                   type="select"
@@ -239,13 +240,13 @@ class RoomDataView extends React.Component {
                 <Label for="Type">Type</Label>
                 <Input
                   name="type"
-                  id="UpdateType"
+                  id="type"
                   value={type}
                   onChange={this.getValue}
                   type="select"
                 >
                   <option>DELUX</option>
-                  <option>SUPREAME</option>
+                  <option>SUPREME</option>
                   <option>VIP</option>
                   <option>STANDARD</option>
                 </Input>
