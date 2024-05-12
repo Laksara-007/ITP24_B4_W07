@@ -56,7 +56,7 @@ const HomeIndex = () => {
         </div>
       </Link>
 
-      <Link to='staff' className='w-1/4 h-[10rem] m-4'>
+      <Link to='staff/view' className='w-1/4 h-[10rem] m-4'>
       <div className='flex flex-col shadow-xl h-full w-full justify-center items-center text-white font-semibold bg-[url("https://img.freepik.com/free-photo/silhouettes-businesspeople-office_1098-2957.jpg?w=1060")] bg-cover bg-center rounded-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300'>
             <span className='text-center text-4xl'>Staff managment</span>
             <span className='text-md text-[#e2cccc]'>Manage all your staff here</span>
