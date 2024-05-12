@@ -9,18 +9,68 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
-import { tabsClasses } from "@mui/material";
 import { getAllReservations } from "../../../api/reservation/reservationService";
-import {format} from "date-fns/format";
+import { format } from "date-fns/format";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 const BookingStats = () => {
   const componentRef = useRef();
   const [rows, setRows] = useState([]);
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: "prescription-data",
-  });
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  //   documentTitle: "reservation-data",
+  // });
+
+  const handleExportPDF = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Reservation History", 10, 10);
+
+    // Table Header
+    const headers = [
+      [
+        "Room ID",
+        "Customer Name",
+        "Rom Type",
+        "Starting Date",
+        "Ending Date",
+        "Price Total",
+      ],
+    ];
+
+    // Table Data
+    const data = rows.map((row) => [
+      row._id,
+      row.customerName,
+      row.name,
+      row.startDate,
+      row.endDate,
+      row.price,
+    ]);
+
+    // Generate the table
+    doc.autoTable({
+      head: headers,
+      body: data,
+      startY: 20,
+      theme: "grid", // Optional - add grid theme to the table
+      styles: { font: "Arial", fontStyle: "bold", fontSize: 10 },
+      columnStyles: {
+        0: { cellWidth: 50 },
+        1: { cellWidth: 25 },
+        2: { cellWidth: 30 },
+        3: { cellWidth: 30 },
+        4: { cellWidth: 30 },
+        5: { cellWidth: 30 },
+      }, // Optional - set column width
+    });
+
+    // Save the PDF
+    doc.save("ReservationHistory.pdf");
+  };
 
   useEffect(() => {
     getAllReservations().then((res) => {
@@ -47,7 +97,7 @@ const BookingStats = () => {
     <div
       className="flex flex-col p-4 bg-slate-100"
       ref={componentRef}
-      onClick={handlePrint}
+      onClick={handleExportPDF}
     >
       <button className="bg-primary w-40 h-10 text-white rounded-lg self-end">
         Print
@@ -76,7 +126,7 @@ const BookingStats = () => {
                       <TableCell>{row?.customerName}</TableCell>
                       <TableCell>{row?.price}</TableCell>
                       <TableCell>{row?.name}</TableCell>
-                      <TableCell>{row?.startDate }</TableCell>
+                      <TableCell>{row?.startDate}</TableCell>
                       <TableCell>{row?.endDate}</TableCell>
                     </TableRow>
                   ))}
