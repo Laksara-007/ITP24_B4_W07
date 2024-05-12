@@ -1,5 +1,6 @@
 import reservationModel from '../models/reservation';
 import roomModel from '../models/room';
+import { makeResponse } from '../utils/response';
 
 export const createReservation = async (body) => {
     const response = await reservationModel.create(body);
@@ -9,11 +10,13 @@ export const createReservation = async (body) => {
     const startDate = new Date(body.startDate);
     const endDate = new Date(body.endDate);
     const currentDate = startDate;
-    while (currentDate <= endDate) {
-        dates.push(currentDate);
-        currentDate.setDate(currentDate.getDate() + 1);
+    for (currentDate; currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
+        dates.push(new Date(currentDate));
     }
-    room.unavailableDates.push(dates);
+    console.log("Dates: ", dates);
+    room.unavailableDates = room.unavailableDates.concat(dates);
+    // room.unavailableDates.push(dates);
+    console.log("Room: ", room);
     const roomres = await room.save();
 
     if (!response || !roomres) {

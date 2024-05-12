@@ -1,10 +1,7 @@
 import mongoose from 'mongoose';
 
 const roomSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        autoIncrement: true
-    },
+   
     price: {
         type: Number,
         required: [true, 'please insert a price']

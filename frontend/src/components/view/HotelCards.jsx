@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const HotelCards = () => {
   const rooms = [
@@ -24,6 +24,13 @@ const HotelCards = () => {
       title: "SUPREME LUXURY ROOMS",
     },
   ];
+
+  const [feedbackCard, setFeedbackCard] = useState(false);
+
+  const toggleFeedbackCard = () => {
+    setFeedbackCard(!feedbackCard);
+  };
+
   return (
     <div className="flex flex-col items-center pt-28">
       <span className="text-2xl font-normal tracking-wider capitalize">
@@ -38,27 +45,60 @@ const HotelCards = () => {
         of our hotel's family-friendly setting as you dine and create treasured
         memories.
       </div>
-      {rooms.map((room) => {
-        return (
-          <div className="flex flex-row h-96 w-3/4 mt-6 mb-10">
-            <div className="flex-1 p-2">
-              <img src={room.image1} alt="room" className="h-full" />
-            </div>
-            <div className="flex flex-col flex-1 p-2">
-              <div className="flex-1">
-                <img src={room.image2} alt="" className="h-48 w-full" />
+      <>
+        {rooms.map((room) => {
+          return (
+            <div className="flex flex-row h-96 w-3/4 mt-6 mb-10">
+              <div className="flex-1 p-2">
+                <img src={room.image1} alt="room" className="h-full" />
               </div>
-              <div className="flex-1 bg-[#967F57] mt-2 flex flex-col items-center justify-center">
-                <span className="text-white">{room.title}</span>
-                <div className="w-32 h-0.5 bg-white mt-2"></div>
-                <button className="bg-transparent border-2 border-white mt-2 w-2/4 text-white">
-                  BOOK THIS ROOM
-                </button>
+              <div className="flex flex-col flex-1 p-2">
+                <div className="flex-1">
+                  <img src={room.image2} alt="" className="h-48 w-full" />
+                </div>
+                {feedbackCard ? (
+                  <>
+                    <div className="flex-1 bg-[#967F57] p-2 flex flex-col items-center justify-center">
+                      {/* <span className="text-white">Add Feedback</span> */}
+                      {/* <div className="w-32 h-0.5 bg-white mt-2"></div> */}
+                      <textarea
+                        type="text"
+                        placeholder="Enter your feedback"
+                        className="h-20 w-full rounded-r-[7px] rounded-l-[7px] bg-white px-3 py-2.5 text-base font-normal text-blue-gray-700  outline outline-none placeholder:text-gray-500 focus:border-r-2 focus:border-y-2 disabled:border-0 bg-blue-gray-50 border border-black"
+                      />
+                      <div className="flex flex-row w-full gap-1">
+                        <button className="bg-transparent border-2 border-white mt-2 w-2/4 text-white">
+                          SUBMIT
+                        </button>
+                        <button
+                          className="bg-transparent  uppercase border-2 border-white mt-2 w-2/4 text-white"
+                          onClick={toggleFeedbackCard}
+                        >
+                          Back
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex-1 bg-[#967F57] mt-2 flex flex-col items-center justify-center">
+                    <span className="text-white">{room.title}</span>
+                    <div className="w-32 h-0.5 bg-white mt-2"></div>
+                    <button className="bg-transparent border-2 border-white mt-2 w-2/4 text-white">
+                      BOOK THIS ROOM
+                    </button>
+                    <button
+                      className="bg-transparent  uppercase border-2 border-white mt-2 w-2/4 text-white"
+                      onClick={toggleFeedbackCard}
+                    >
+                      Add Feedbacks
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </>
     </div>
   );
 };
