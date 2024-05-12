@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { createFeedbacks } from "../../api/feedbacks";
 import { ToastContainer, toast } from "react-toastify";
+import { createFeedbacks } from "../../api/feedbackServices";
 
 const HotelCards = () => {
   const rooms = [
@@ -11,20 +11,20 @@ const HotelCards = () => {
         "https://images.unsplash.com/photo-1621293954908-907159247fc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
       title: "DELUX LAKE VIEW HOTEL",
     },
-    {
-      image1:
-        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      image2:
-        "https://plus.unsplash.com/premium_photo-1663093806285-d905ca96c661?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "VIP ROOMS",
-    },
-    {
-      image1:
-        "https://images.unsplash.com/photo-1613553474179-e1eda3ea5734?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      image2:
-        "https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      title: "SUPREME LUXURY ROOMS",
-    },
+    // {
+    //   image1:
+    //     "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+    //   image2:
+    //     "https://plus.unsplash.com/premium_photo-1663093806285-d905ca96c661?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+    //   title: "VIP ROOMS",
+    // },
+    // {
+    //   image1:
+    //     "https://images.unsplash.com/photo-1613553474179-e1eda3ea5734?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+    //   image2:
+    //     "https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    //   title: "SUPREME LUXURY ROOMS",
+    // },
   ];
 
   const [feedbackCard, setFeedbackCard] = useState(false);
@@ -45,6 +45,7 @@ const HotelCards = () => {
       console.log("Feedback created successfully:", response);
       toast.success(`Feedback added successfully`);
     } catch (error) {
+      toast.error(error);
       console.error("Error adding feedback:", error);
     }
   };

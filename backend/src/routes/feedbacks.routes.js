@@ -3,6 +3,6 @@ import { createFeedbacks } from '../controllers/feedbacks';
 
 const feedbacksRoute = Express.Router();
 
-feedbacksRoute.get('/', createFeedbacks);
+feedbacksRoute.post('/', createFeedbacks);
 
 export default feedbacksRoute;
