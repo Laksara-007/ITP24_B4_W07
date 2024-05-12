@@ -25,5 +25,6 @@ router.use('/billing', billingRoute);
 router.use('/event', eventRoute);
 router.use('/package', packageRoute);
 router.use('/room', roomRoute);
+router.use('/reservation', resRouter);
 
 export default router;
